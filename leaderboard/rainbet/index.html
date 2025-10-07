@@ -1,323 +1,204 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LobbeLuck</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="/assets/logo.png" type="image/png">
-    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MrTerpyy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="/assets/logo.png" type="image/png" />
+    <link rel="stylesheet" href="/css/style.css" />
 
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Best Rainbet Rewards and Exclusive Bonuses!">
-    <meta name="keywords" content="LobbeLuck, online gaming, casino, collaboration, entertainment, Rainbet">
-    <meta name="author" content="LobbeLuck">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.lobberewards.com/">
-    <meta property="og:title" content="LobbeLuck">
-    <meta property="og:description" content="Best Rainbet Rewards and Exclusive Bonuses!">
-    <meta property="og:image"
-        content="/assets/logo.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.lobberewards.com/">
-    <meta property="twitter:title" content="LobbeLuck">
-    <meta property="twitter:description" content="Best Rainbet Rewards and Exclusive Bonuses!">
-    <meta property="twitter:image"
-        content="/assets/logo.png">
     <style>
-        .leaderboard-logo {
-            height: 100px;
-        }
+      /* Your existing styles abbreviated */
+      .leaderboard-logo {
+          height: 100px;
+      }
 
-        @media (max-width: 768px) {
-            .float-img {
-                width: 80px;
-                height: 80px;
-            }
+      /* Modal Styling */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.6);
+        backdrop-filter: blur(3px);
+      }
 
-            .float-1 {
-                top: 30%;
-                left: 5%;
-            }
+      .modal-content {
+        background-color: #222;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 900px !important;
+        min-width: 340px;
+        color: white;
+        box-shadow: 0 0 15px rgba(73,144,226,0.8);
+        font-family: Arial, sans-serif;
+        overflow-x: auto;
+      }
 
-            .float-2 {
-                top: 30%;
-                right: 5%;
-            }
+      .close-btn {
+        color: #999;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+      }
 
-            .float-3 {
-                bottom: 15%;
-                left: 10%;
-            }
+      .close-btn:hover {
+        color: #ddd;
+      }
 
-            .float-4 {
-                right: 10%;
-            }
-        }
+      /* Hide floating images from modal */
+      .modal-content .floating-images {
+        display: none;
+      }
 
-        .progress-container {
-            width: 100%;
-            max-width: 400px;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 20px auto;
-            position: relative;
-            overflow: visible;
-        }
+      .modal-leaderboard-top3 {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
 
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), #4a90e2);
-            border-radius: 10px;
-            transition: width 0.5s ease-in-out;
-        }
+      .modal-leaderboard-top3 > div,
+      .top-winners .winner-card {
+        flex: 1;
+        min-width: 200px;
+        max-width: 240px;
+        background: rgba(35,37,60,0.85);
+        box-shadow: 0 4px 32px 6px #0005;
+        border-radius: 18px;
+        padding: 2rem 1.2rem 1.2rem 1.2rem;
+        margin: 0 .2rem;
+        text-align: center;
+      }
 
-        .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
+.top-winners .place-badge {
+  display: flex;                  /* Use flexbox for centering */
+  justify-content: center;        /* Center horizontally */
+  align-items: center;            /* Center vertically */
+  width: 2.4em;                  /* Fixed width to create circle */
+  height: 2.4em;                 /* Fixed height equal to width */
+  border-radius: 50%;             /* Fully rounded to form circle */
+  background: var(--primary-blue, #4687e6);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 0.4em;
+  padding: 0;                    /* Remove padding to keep circle shape */
+  line-height: normal;           /* Reset line-height */
+}
 
-        .progress-sword {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            top: -5px;
-            transform: translateX(-50%);
-            transition: left 0.5s ease-in-out;
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-            animation: swordFloat 2s ease-in-out infinite;
-        }
 
-        @keyframes swordFloat {
+      .winner-card .username {
+        font-size: 1.3em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin: 0.7em 0 0.3em 0;
+      }
 
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
+      .winner-card .stats {
+        margin-top: 0.5em;
+      }
 
-            50% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
+      .winner-card .stats .label {
+        font-size: 0.93em;
+        color: #bac8e4;
+      }
 
-        .leaderboard-switcher {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            position: relative;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
+      .winner-card .stats .value {
+        display: block;
+        font-weight: bold;
+        color: #fff;
+        font-size: 1.1em;
+        margin-bottom: .5em;
+      }
 
-        .switcher-item {
-            position: relative;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .modal-leaderboard-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
 
-        .switcher-item::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 100%;
-            height: 3px;
-            background: var(--primary-blue);
-            transition: transform 0.3s ease;
-            border-radius: 2px;
-        }
+      .modal-leaderboard-table th,
+      .modal-leaderboard-table td {
+        border: 1px solid #444;
+        text-align: left;
+        padding: 8px;
+        font-size: 0.9rem;
+        color: white;
+      }
 
-        .switcher-item:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+      /* Center the Previous Leaderboard button */
+      #prevBtnContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
 
-        .switcher-item.active::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .leaderboard-logo {
-            height: 80px;
-            transition: transform 0.3s ease;
-        }
-
-        .switcher-item:hover .leaderboard-logo {
-            transform: scale(1.05);
-        }
-
-        .switcher-item.active .leaderboard-logo {
-            transform: scale(1.1);
-        }
-
-        .divider {
-            position: absolute;
-            right: -1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-            font-weight: bold;
-            opacity: 0.5;
-        }
-
-        /* Animation for switching */
-        @keyframes switcherFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .switcher-item {
-            animation: switcherFadeIn 0.3s ease forwards;
-        }
-
-        /* Add or update these styles in your existing <style> tag */
-
-        .leaderboard-switcher {
-            gap: 1.5rem;
-            /* Reduced gap for mobile */
-            padding: 0.75rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            /* Allow wrapping on very small screens */
-        }
-
-        .switcher-item {
-            padding: 0.5rem 1rem;
-            min-width: 120px;
-            /* Ensure minimum width */
-        }
-
-        .leaderboard-logo {
-            height: 60px;
-            /* Default size */
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* Media queries for responsive design */
-        @media (max-width: 768px) {
-            .leaderboard-switcher {
-                gap: 1rem;
-                padding: 0.5rem;
-                max-width: 90%;
-            }
-
-            .leaderboard-logo {
-                height: 40px;
-                /* Smaller size for mobile */
-            }
-
-            .switcher-item {
-                padding: 0.4rem 0.8rem;
-                min-width: 100px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .leaderboard-switcher {
-                gap: 0.75rem;
-                padding: 0.4rem;
-            }
-
-            .leaderboard-logo {
-                height: 35px;
-                /* Even smaller for very small screens */
-            }
-
-            .switcher-item {
-                padding: 0.3rem 0.6rem;
-                min-width: 80px;
-            }
-
-            .switcher-item::after {
-                height: 2px;
-                /* Thinner underline on mobile */
-            }
-        }
-
-        /* Improve touch targets on mobile */
-        @media (hover: none) {
-            .switcher-item {
-                transition: transform 0.2s ease;
-            }
-
-            .switcher-item:active {
-                transform: scale(0.95);
-            }
-        }
+      #showPrevLeaderboardBtn {
+        padding: 0.5rem 1.5rem;
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        font-weight: 600;
+        min-width: 180px;
+        transition: background-color 0.3s ease;
+      }
+      #showPrevLeaderboardBtn:hover {
+        background: #3a6bb5;
+      }
     </style>
 </head>
-
 <body>
     <header class="header">
         <div class="nav-container">
             <div class="nav-left">
                 <div style="display: flex; align-items: center; gap: 1rem;">
                     <a href="/" class="logo">
-                        <img src="/assets/logo.png" alt="King Logo" style="width: 60px;">
+                        <img src="/assets/logo.png" alt="King Logo" style="width: 60px;" />
                     </a>
-                    
                 </div>
                 <div class="nav-links">
                     <a href="/" class="nav-link">HOME</a>
-                    <a href="https://www.lobberewards.com/#socials" class="nav-link">SOCIALS</a>
-                    <a href="/leaderboard/rainbet" class="nav-link active"><i class="fas fa-trophy" style="color: #d4af37"></i>
-                        LEADERBOARD</a>
+                    <a href="/#socials" class="nav-link">SOCIALS</a>
+                    <a href="/leaderboard/rainbet" class="nav-link active">
+                        <i class="fas fa-trophy" style="color: #d4af37"></i> LEADERBOARD
+                    </a>
                 </div>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <button class="close-menu">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="close-menu"><i class="fas fa-times"></i></button>
         <div class="nav-links">
             <a href="/" class="nav-link">HOME</a>
-            <a href="https://www.lobberewards.com/#socials" class="nav-link">SOCIALS</a>
-            <a href="/leaderboard/rainbet" class="nav-link active"><i class="fas fa-trophy" style="color: #d4af37"></i>
-                LEADERBOARD</a>
+            <a href="/#socials" class="nav-link">SOCIALS</a>
+            <a href="/leaderboard/rainbet" class="nav-link active">
+                <i class="fas fa-trophy" style="color: #d4af37"></i> LEADERBOARD
+            </a>
         </div>
     </div>
 
@@ -325,88 +206,56 @@
         <div class="section-title">
             <div class="leaderboard-switcher">
                 <a href="/leaderboard/rainbet" class="switcher-item active">
-                    <img src="/assets/rainbet.png" alt="Rainbet" class="leaderboard-logo">
+                    <img src="/assets/rainbet.png" alt="Rainbet" class="leaderboard-logo" />
                 </a>
-                <!-- <a href="/leaderboard/rainbet/upgrader" class="switcher-item">
-                    <img src="/assets/upgrader.png" alt="Upgrader" class="leaderboard-logo">
-                </a> -->
             </div>
-            <h2 class="bonus-title"><span style="color: var(--primary-blue)">LEADERBOARD</span></h2>
+            <h2 class="bonus-title"><span style="color: var(--primary-blue)">1,000$ CAD MONTHLY LEADERBOARD</span></h2>
             <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days">00</span>
-                    <label>Days</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours">00</span>
-                    <label>Hours</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes">00</span>
-                    <label>Minutes</label>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds">00</span>
-                    <label>Seconds</label>
-                </div>
+                <div class="countdown-item"><span id="days">00</span><label>Days</label></div>
+                <div class="countdown-item"><span id="hours">00</span><label>Hours</label></div>
+                <div class="countdown-item"><span id="minutes">00</span><label>Minutes</label></div>
+                <div class="countdown-item"><span id="seconds">00</span><label>Seconds</label></div>
+            </div>
+
+            <!-- Centered Previous Leaderboard Button -->
+            <div id="prevBtnContainer">
+              <button id="showPrevLeaderboardBtn">Previous Leaderboard</button>
             </div>
         </div>
 
         <!-- Top 3 Winners -->
         <div class="top-winners">
             <div class="floating-images">
-                <img src="/assets/hammer.png" alt="floating icon 1" class="float-img float-1">
-                <img src="/assets/sword.png" alt="floating icon 2" class="float-img float-2">
-                <img src="/assets/wild.png" alt="floating icon 3" class="float-img float-3">
-                <img src="/assets/chest.png" alt="floating icon 4" class="float-img float-4">
+                <img src="/assets/hammer.png" alt="floating icon 1" class="float-img float-1" />
+                <img src="/assets/sword.png" alt="floating icon 2" class="float-img float-2" />
+                <img src="/assets/wild.png" alt="floating icon 3" class="float-img float-3" />
+                <img src="/assets/chest.png" alt="floating icon 4" class="float-img float-4" />
             </div>
             <div class="winner-card silver">
                 <div class="place-badge">2</div>
-                <div class="medal"><img src="/assets/silver.png" alt="wild medal"></div>
+                <div class="medal"><img src="/assets/silver.png" alt="wild medal" /></div>
                 <h3 class="username" id="winner-2-username"></h3>
                 <div class="stats">
-                    <div class="wagered">
-                        <span class="label">Wagered</span>
-                        <span class="value" id="winner-2-wagered"></span>
-                    </div>
-                    <div class="prize">
-                        <span class="label">Prize</span>
-                        <span class="value" id="winner-2-prize"></span>
-                    </div>
+                    <div class="wagered"><span class="label">Wagered</span><span class="value" id="winner-2-wagered"></span></div>
+                    <div class="prize"><span class="label">Prize</span><span class="value" id="winner-2-prize"></span></div>
                 </div>
             </div>
-
-            <!-- First Place -->
             <div class="winner-card gold">
                 <div class="place-badge">1</div>
-                <div class="medal"><img src="/assets/gold.png" alt="golden medal"></div>
+                <div class="medal"><img src="/assets/gold.png" alt="golden medal" /></div>
                 <h3 class="username" id="winner-1-username"></h3>
                 <div class="stats">
-                    <div class="wagered">
-                        <span class="label">Wagered</span>
-                        <span class="value" id="winner-1-wagered"></span>
-                    </div>
-                    <div class="prize">
-                        <span class="label">Prize</span>
-                        <span class="value" id="winner-1-prize"></span>
-                    </div>
+                    <div class="wagered"><span class="label">Wagered</span><span class="value" id="winner-1-wagered"></span></div>
+                    <div class="prize"><span class="label">Prize</span><span class="value" id="winner-1-prize"></span></div>
                 </div>
             </div>
-
-            <!-- Third Place -->
             <div class="winner-card bronze">
                 <div class="place-badge">3</div>
-                <div class="medal"><img src="/assets/bronze.png" alt="bronze medal"></div>
+                <div class="medal"><img src="/assets/bronze.png" alt="bronze medal" /></div>
                 <h3 class="username" id="winner-3-username"></h3>
                 <div class="stats">
-                    <div class="wagered">
-                        <span class="label">Wagered</span>
-                        <span class="value" id="winner-3-wagered"></span>
-                    </div>
-                    <div class="prize">
-                        <span class="label">Prize</span>
-                        <span class="value" id="winner-3-prize"></span>
-                    </div>
+                    <div class="wagered"><span class="label">Wagered</span><span class="value" id="winner-3-wagered"></span></div>
+                    <div class="prize"><span class="label">Prize</span><span class="value" id="winner-3-prize"></span></div>
                 </div>
             </div>
         </div>
@@ -422,24 +271,76 @@
                         <th>Prize</th>
                     </tr>
                 </thead>
-                <tbody>
-                </tbody>
+                <tbody></tbody>
             </table>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Previous Leaderboard Modal -->
+    <div id="prevLeaderboardModal" class="modal">
+      <div class="modal-content leaderboard-section">
+        <span class="close-btn" id="modalCloseBtn">&times;</span>
+        <h2 class="bonus-title" style="text-align:center; margin-bottom: 1rem;">
+          <span style="color: var(--primary-blue)">Previous Leaderboard</span>
+        </h2>
+
+        <!-- Top 3 Winners styled same as main page -->
+        <div class="top-winners">
+          <div class="floating-images"></div> <!-- hidden in modal -->
+          <div class="winner-card silver">
+            <div class="place-badge">2</div>
+            <div class="medal"><img src="/assets/silver.png" alt="silver medal" style="max-width:70px;"></div>
+            <h3 class="username" id="prev-winner-2-name"></h3>
+            <div class="stats">
+              <div class="wagered"><span class="label">Wagered</span><span class="value" id="prev-winner-2-wager"></span></div>
+              <div class="prize"><span class="label">Prize</span><span class="value" id="prev-winner-2-prize"></span></div>
+            </div>
+          </div>
+
+          <div class="winner-card gold">
+            <div class="place-badge">1</div>
+            <div class="medal"><img src="/assets/gold.png" alt="gold medal" style="max-width:84px;"></div>
+            <h3 class="username" id="prev-winner-1-name"></h3>
+            <div class="stats">
+              <div class="wagered"><span class="label">Wagered</span><span class="value" id="prev-winner-1-wager"></span></div>
+              <div class="prize"><span class="label">Prize</span><span class="value" id="prev-winner-1-prize"></span></div>
+            </div>
+          </div>
+
+          <div class="winner-card bronze">
+            <div class="place-badge">3</div>
+            <div class="medal"><img src="/assets/bronze.png" alt="bronze medal" style="max-width:70px;"></div>
+            <h3 class="username" id="prev-winner-3-name"></h3>
+            <div class="stats">
+              <div class="wagered"><span class="label">Wagered</span><span class="value" id="prev-winner-3-wager"></span></div>
+              <div class="prize"><span class="label">Prize</span><span class="value" id="prev-winner-3-prize"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="leaderboard-table-container">
+          <table class="leaderboard-table">
+            <thead>
+              <tr><th>Rank</th><th>Username</th><th>Wagered</th><th>Prize</th></tr>
+            </thead>
+            <tbody id="prevLeaderboardTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-top">
                 <div class="footer-links">
                     <a href="/" class="footer-link">Home</a>
-                    <a href="https://www.lobberewards.com/#socials" class="footer-link">Socials</a>
+                    <a href="/#socials" class="footer-link">Socials</a>
                     <a href="/leaderboard/rainbet" class="footer-link">Leaderboard</a>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/lobbeluck"><i class="fab fa-instagram"></i></a>
-                    <a href="https://kick.com/lobbeluck"><i class="fa-brands fa-kickstarter-k"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://kick.com/"><i class="fa-brands fa-kickstarter-k"></i></a>
                     <a href="https://discord.gg/tUrAhmZEbK"><i class="fab fa-discord"></i></a>
                 </div>
             </div>
@@ -450,238 +351,187 @@
                         class="gamble-aware-link">BeGambleAware.org</a>
                 </p>
             </div>
-            <p class="footer-text">&copy; 2025 LobbeLuck. All rights reserved.</p>
+            <p class="footer-text">&copy; 2025 MrTerpyy. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu functionality
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const closeMenuBtn = document.querySelector('.close-menu');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu .nav-link');
+      // Mobile menu functionality
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const closeMenuBtn = document.querySelector('.close-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu .nav-link');
 
-        // Open mobile menu
-        mobileMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
+      mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+      closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
         });
+      });
+      document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('active') &&
+          !mobileMenu.contains(e.target) &&
+          !mobileMenuBtn.contains(e.target)) {
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
 
-        // Close mobile menu
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+      // Countdown update functionality
+      function updateCountdown(endTime) {
+        const countDownDate = endTime;
+        const x = setInterval(function () {
+          const now = new Date().getTime();
+          const distance = countDownDate - now;
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+          document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+          document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+          document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+          if (distance < 0) {
+            clearInterval(x);
+            document.querySelector(".countdown").innerHTML = "COMPETITION ENDED";
+          }
+        }, 1000);
+      }
 
-        // Close menu when clicking a link
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
+      async function fetchLeaderboardData() {
+        try {
+          const [leaderboardResponse, countdownResponse] = await Promise.all([
+            fetch('https://aetricrewardsdata.vercel.app/api/leaderboard/rainbet'),
+            fetch('https://aetricrewardsdata.vercel.app/api/countdown/rainbet')
+          ]);
+          if (!leaderboardResponse.ok || !countdownResponse.ok) throw new Error('Network response was not ok');
+          const leaderboardData = await leaderboardResponse.json();
+          const countdownData = await countdownResponse.json();
+          return {
+            leaderboard: leaderboardData.leaderboard,
+            prizes: leaderboardData.prizes,
+            startTime: new Date(leaderboardData.startTime).getTime(),
+            endTime: new Date(leaderboardData.endTime).getTime(),
+            percentageLeft: countdownData.percentageLeft
+          };
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          return null;
+        }
+      }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileMenu.classList.contains('active') &&
-                !mobileMenu.contains(e.target) &&
-                !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+      function updateLeaderboard(leaderboardData, prizes) {
+        function findPrize(pos) {
+          const prizeObj = prizes.find(p => p.position === pos);
+          return prizeObj ? prizeObj.reward : '-';
+        }
+        for(let i=0; i<3; i++) {
+          const player = leaderboardData[i];
+          const prize = findPrize(i+1);
+          if(player){
+            document.getElementById(`winner-${i+1}-username`).textContent = player.name;
+            document.getElementById(`winner-${i+1}-wagered`).textContent = `$${Number(player.wager).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}`;
+            document.getElementById(`winner-${i+1}-prize`).textContent = `$${prize}`;
+          }
+        }
+        const tbody = document.querySelector('.leaderboard-table tbody');
+        tbody.innerHTML = '';
+        for(let i=3; i<10; i++){
+          const player = leaderboardData[i];
+          const prize = findPrize(i+1);
+          if(player){
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${i+1}</td><td>${player.name}</td><td>$${Number(player.wager).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}</td><td>$${prize}</td>`;
+            tbody.appendChild(row);
+          }
+        }
+      }
+
+      async function initializeAndUpdate() {
+        const data = await fetchLeaderboardData();
+        if(data){
+          updateCountdown(data.endTime);
+          updateLeaderboard(data.leaderboard, data.prizes);
+          window.currentPrizes = data.prizes;
+        }
+        setInterval(async () => {
+          const updated = await fetchLeaderboardData();
+          if(updated){
+            updateLeaderboard(updated.leaderboard, updated.prizes);
+            window.currentPrizes = updated.prizes;
+          }
+        }, 60000);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        initializeAndUpdate();
+
+        const modal = document.getElementById('prevLeaderboardModal');
+        const closeBtn = document.getElementById('modalCloseBtn');
+        const showPrevBtn = document.getElementById('showPrevLeaderboardBtn');
+
+        function findPrizeByPosition(pos) {
+          if(!window.currentPrizes) return '-';
+          const prizeObj = window.currentPrizes.find(p => p.position === pos);
+          return prizeObj ? `$${prizeObj.reward.toLocaleString()}` : '-';
+        }
+
+        async function populatePreviousLeaderboard() {
+          try {
+            const res = await fetch('https://aetricrewardsdata.vercel.app/api/prev-leaderboard/rainbet');
+            if(!res.ok) throw new Error('Failed to fetch previous leaderboard');
+            const data = await res.json();
+            const leaderboard = data.leaderboard || [];
+
+            for(let i=0; i<3; i++){
+              const ply = leaderboard[i] || {};
+              document.getElementById(`prev-winner-${i+1}-name`).textContent = ply.name || '-';
+              document.getElementById(`prev-winner-${i+1}-wager`).textContent = ply.wager != null 
+                ? `$${Number(ply.wager).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}` : '-';
+              document.getElementById(`prev-winner-${i+1}-prize`).textContent = findPrizeByPosition(i+1);
             }
-        });
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                // If we're not on the home page and trying to access a section
-                if (href.startsWith('/#') && window.location.pathname !== '/') {
-                    // Don't prevent default - let the browser navigate to home page
-                    return;
-                }
-
-                e.preventDefault();
-                const targetId = href.split('#')[1];
-                const target = document.querySelector('#' + targetId);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        const header = document.querySelector('.header');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll <= 0) {
-                header.classList.remove('scroll-up');
-                return;
+            const tbody = document.getElementById('prevLeaderboardTableBody');
+            tbody.innerHTML = '';
+            for(let i=3; i<10; i++){
+              const ply = leaderboard[i] || {};
+              const rank = i+1;
+              const name = ply.name || '-';
+              const wager = ply.wager != null ? `$${Number(ply.wager).toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}` : '-';
+              const prize = findPrizeByPosition(rank);
+              const tr = document.createElement('tr');
+              tr.innerHTML = `<td>${rank}</td><td>${name}</td><td>${wager}</td><td>${prize}</td>`;
+              tbody.appendChild(tr);
             }
+          } catch(e) {
+            alert('Failed to load previous leaderboard');
+            console.error(e);
+          }
+        }
 
-            if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-                header.classList.remove('scroll-up');
-                header.classList.add('scroll-down');
-            } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-                header.classList.remove('scroll-down');
-                header.classList.add('scroll-up');
-            }
-            lastScroll = currentScroll;
+        showPrevBtn.addEventListener('click', async () => {
+          await populatePreviousLeaderboard();
+          modal.style.display = 'block';
         });
+        closeBtn.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
+        window.addEventListener('click', (e) => {
+          if(e.target === modal){
+            modal.style.display = 'none';
+          }
+        });
+      });
     </script>
-    <script>
-        // Countdown update functionality
-        function updateCountdown(endTime) {
-            const countDownDate = endTime;
-
-            const x = setInterval(function () {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerHTML = String(days).padStart(2, '0');
-                document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
-                document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
-                document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.querySelector(".countdown").innerHTML = "COMPETITION ENDED";
-                }
-            }, 1000);
-        }
-
-        // Function to fetch leaderboard data from API
-        async function fetchLeaderboardData() {
-            try {
-                const [leaderboardResponse, countdownResponse] = await Promise.all([
-                    fetch('https://lobbedata.onrender.com/api/leaderboard/rainbet'),
-                    fetch('https://lobbedata.onrender.com/api/countdown/rainbet')
-                ]);
-
-                if (!leaderboardResponse.ok || !countdownResponse.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const leaderboardData = await leaderboardResponse.json();
-                const countdownData = await countdownResponse.json();
-
-                return {
-                    leaderboard: leaderboardData.leaderboard,
-                    prizes: leaderboardData.prizes,
-                    startTime: new Date(leaderboardData.startTime).getTime(),
-                    endTime: new Date(leaderboardData.endTime).getTime(),
-                    percentageLeft: countdownData.percentageLeft
-                };
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                return null;
-            }
-        }
-
-        // Function to update the progress bar and sword position
-        function updateProgressBar(percentageLeft) {
-            const progressBar = document.getElementById('competition-progress');
-            const progressText = document.getElementById('progress-percentage');
-            const progressSword = document.getElementById('progress-sword');
-            const progressPercentage = 100 - percentageLeft;
-
-            progressBar.style.width = `${progressPercentage}%`;
-            progressText.textContent = `${progressPercentage}% Complete`;
-
-            // Update sword position
-            const containerWidth = progressBar.parentElement.offsetWidth;
-            const swordPosition = (progressPercentage / 100) * containerWidth;
-            progressSword.style.left = `${swordPosition}px`;
-        }
-
-        // Function to update the leaderboard
-        function updateLeaderboard(leaderboardData, prizes) {
-            // Update top 3 winners
-            for (let i = 0; i < 3; i++) {
-                const player = leaderboardData[i];
-                const prize = prizes.find(p => p.position === i + 1);
-                if (player) {
-                    document.getElementById(`winner-${i + 1}-username`).textContent = player.name;
-                    document.getElementById(`winner-${i + 1}-wagered`).textContent =
-                        `$${Number(player.wager).toLocaleString(undefined, {
-                            minimumFractionDigits: 0,
-                            maximumFractionDigits: 0
-                        })}`;
-                    document.getElementById(`winner-${i + 1}-prize`).textContent =
-                        prize ? `$${Number(prize.reward).toLocaleString()}` : '-';
-                }
-            }
-
-            // Update table for positions 4-10
-            const tbody = document.querySelector('.leaderboard-table tbody');
-            tbody.innerHTML = ''; // Clear existing rows
-
-            for (let i = 3; i < 10; i++) {
-                const player = leaderboardData[i];
-                const prize = prizes.find(p => p.position === i + 1);
-                if (player) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${i + 1}</td>
-                        <td>${player.name}</td>
-                        <td>$${Number(player.wager).toLocaleString(undefined, {
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
-                    })}</td>
-                        <td>${prize ? `$${Number(prize.reward).toLocaleString()}` : '-'}</td>
-                    `;
-                    tbody.appendChild(row);
-                }
-            }
-        }
-
-        // Initialize the page with data and set up periodic updates
-        async function initializeAndUpdate() {
-            // Initial load
-            const data = await fetchLeaderboardData();
-            if (data) {
-                updateCountdown(data.endTime);
-                updateLeaderboard(data.leaderboard, data.prizes);
-                // updateProgressBar(data.percentageLeft);
-            }
-
-            // Update every minute
-            setInterval(async () => {
-                const updatedData = await fetchLeaderboardData();
-                if (updatedData) {
-                    updateLeaderboard(updatedData.leaderboard, updatedData.prizes);
-                    // updateProgressBar(updatedData.percentageLeft);
-                }
-            }, 60000); // 60000 ms = 1 minute
-        }
-
-        // Start everything when the DOM is loaded
-        document.addEventListener('DOMContentLoaded', initializeAndUpdate);
-
-        document.querySelectorAll('.switcher-item').forEach(item => {
-            item.addEventListener('click', (e) => {
-                // Remove active class from all items
-                document.querySelectorAll('.switcher-item').forEach(i => {
-                    i.classList.remove('active');
-                });
-                // Add active class to clicked item
-                item.classList.add('active');
-            });
-        });
-    </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"94d2864f082e2691","version":"2025.5.0","r":1,"token":"332769ee6b8a4d008785502ac76bb2b2","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"94d2864f082e2691","version":"2025.5.0","r":1,"token":"332769ee6b8a4d008785502ac76bb2b2","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
 </body>
-
 </html>
