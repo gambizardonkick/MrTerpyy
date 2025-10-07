@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Segoe+UI:wght@300;400;500;700&family=Anton&display=swap");
 
 :root {
-  --primary-bg: #0e1226;
-  --secondary-bg: #171d37;
-  --nav-bg: #171d37;
-  --primary-blue: #0470ce;
-  --hover-blue: #0366bb;
+  --primary-bg: #1a0b0b;
+  --secondary-bg: #2d1010;
+  --nav-bg: #440b0b;
+  --primary-blue: #e3342f;
+  --hover-blue: #c8232c;
   --text-primary: #ffffff;
-  --text-secondary: #a1a5b7;
-  --border-color: #252b3b;
+  --text-secondary: #ffcfcf;
+  --border-color: #742525;
 }
 
 * {
