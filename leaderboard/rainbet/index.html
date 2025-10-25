@@ -172,6 +172,37 @@
     display: none !important;
   }
 }
+.info-box {
+  text-align: center;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin: 1rem auto;
+  max-width: 700px;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: white;
+}
+
+.info-box a {
+  color: #68a7f7;
+  text-decoration: underline;
+}
+.info-box a:hover {
+  color: #a0d1ff;
+}
+
+/* Blue box for leaderboard instructions */
+.blue-box {
+  background: rgba(73,144,226,0.15);
+  border: 1px solid #4687e6;
+}
+
+/* Red box for warning */
+.red-box {
+  background: rgba(226,70,70,0.15);
+  border: 1px solid #e24646;
+}
 
     </style>
 </head>
@@ -222,6 +253,15 @@
                 <div class="countdown-item"><span id="minutes">00</span><label>Minutes</label></div>
                 <div class="countdown-item"><span id="seconds">00</span><label>Seconds</label></div>
             </div>
+<!-- Info Box 1: Leaderboard End Instructions -->
+<div class="info-box blue-box">
+  The leaderboard has ended! Be sure to <a href="https://discord.gg/nDHUaKZYFR" target="_blank">join our Discord</a> and create a ticket to claim your prize.
+</div>
+
+<!-- Info Box 2: Wager Abuse Warning -->
+<div class="info-box red-box">
+  ⚠️ Wager abuse is strictly prohibited and may result in removal from the leaderboard.
+</div>
 
             <!-- Centered Previous Leaderboard Button -->
             <div id="prevBtnContainer">
